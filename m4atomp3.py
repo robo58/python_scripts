@@ -1,25 +1,3 @@
-# Packages reqd: pydub, ffmpeg
-
-# pydub - pip install pydub
-
-# ffmpeg:
-# sudo add-apt-repository ppa:kirillshkrogalev/ffmpeg-next
-# sudo apt-get update
-# sudo apt-get install ffmpeg
-
-# Load the m4a files (in M4a_files.tar.gz)
-
-#!tar -xvzf M4a_files.tar.gz
-
-# Delete unwanted files (here: Tapping files)
-
-#!find M4a_files/ -name 'tapping_results.*' -delete
-
-# Converting to wav
-# Using pydub
-
-# Convert all file extensions to m4a (if required)
-
 from pydub import AudioSegment
 import argparse
 import os
@@ -34,9 +12,6 @@ for filename in os.listdir(folder):
     output = os.rename(infilename, newname)
 
 
-# Convert m4a extension files to wav extension files
-
-
 formats_to_convert = ['.m4a']
 
 for (dirpath, dirnames, filenames) in os.walk("./"):
@@ -49,13 +24,10 @@ for (dirpath, dirnames, filenames) in os.walk("./"):
             try:
                 track = AudioSegment.from_file(filepath,
                                                file_extension_final)
-                wav_filename = filename.replace(file_extension_final, 'mp3')
-                wav_path = dirpath + '/' + wav_filename
+                mp3_filename = filename.replace(file_extension_final, 'mp3')
+                mp3_path = dirpath + '/' + mp3_filename
                 print('CONVERTING: ' + str(filepath))
-                file_handle = track.export(wav_path, format='mp3')
+                file_handle = track.export(mp3_path, format='mp3')
                 os.remove(filepath)
             except:
                 print("ERROR CONVERTING " + str(filepath))
-
-# Rename folder M4a_files as wav_files
-#!mv M4a_files wav_files

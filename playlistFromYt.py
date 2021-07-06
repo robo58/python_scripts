@@ -15,12 +15,14 @@ def downloadPlaylistFromYt(url):
         'prefer_ffmpeg': True,
         'keepvideo': False
     }
+    
     ydl = youtube_dl.YoutubeDL(ydl_opts)
-
-    try:
-        ydl.download([url])
-    except:
-        print("Failed")
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        try:
+            ydl.cache.remove()
+            ydl.download([url])
+        except youtube_dl.DownloadError as error:
+            pass
 
 
 if __name__ == "__main__":
