@@ -9,7 +9,7 @@ python ./csv_extract_headers.py -i inputFile.csv -o outputFile.txt
 
 Converts all m4a files in current directory to mp3
 ```
-python ./m4atomp3s.py
+python ./m4atomp3.py
 ```
 ### download mp3 from yt playlist ###
 ```
